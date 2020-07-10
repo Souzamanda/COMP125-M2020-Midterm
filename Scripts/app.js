@@ -5,6 +5,7 @@
 
 // YOUR CODE GOES HERE
 
+    // FUNCTION TO ADD PARAGRAPHS TO THE PAGE
     function addParagraphs()
     {
         //Intro Paragraph
@@ -88,6 +89,7 @@
         }
     }
 
+    // FUNCTION TO VALIDATE THE FORM'S INPUTS
     function formValidation()
     {
         let contactForm = document.getElementsByTagName("form")[0];
@@ -178,6 +180,7 @@
             });
         }
     }
+
 
     function Start()
     {

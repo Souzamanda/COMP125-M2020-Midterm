@@ -1,3 +1,8 @@
+/*  File name: app.js
+    Author's name: Amanda Cordeiro de Souza Puttomatti
+    Web site name: The travel Report
+    File Description: Javascript file */
+
 // setup your IIFE (Immediately Invoked Function Expression)
 (function () {
 "use strict";
@@ -110,9 +115,7 @@
                 if(firstName.value.length < 2)
                 {
                     firstName.focus();
-                    /* errorMessage.hidden = false;
-                    errorMessage.textContent = "Please insert a valid first name"
-                    panelHead.appendChild(errorMessage); */
+                    console.error("Please enter a valid first name. With at least 2 characters.");
                 }
             });
 
@@ -123,9 +126,7 @@
                 if(lastName.value.length < 2)
                 {
                     lastName.focus();
-                    /* errorMessage.hidden = false;
-                    errorMessage.textContent = "Please insert a valid first name"
-                    panelHead.appendChild(errorMessage); */
+                    console.error("Please enter a valid last name. With at least 2 characters.");
                 }
             });
 
@@ -133,16 +134,10 @@
             let contactNumber = document.getElementById("contactNumber")
             contactNumber.addEventListener("blur", (event) =>
             {
-                if(contactNumber.value.match(/^\d{10}$/))
-                {
-                    
-                }
-                else
+                if(!contactNumber.value.match(/^[(]{0,1}\d{3}[)]{0,1}[-\s\.]{0,1}\d{3}[-\s\.]{0,1}\d{4}$/)) //RegEx to check if the number has 10 digits and can be in some formats (123) 456 7890, (123) 456-7890, 123-456-7890, 1234567890
                 {
                     contactNumber.focus();
-                    /* errorMessage.hidden = false;
-                    errorMessage.textContent = "Please insert a valid first name"
-                    panelHead.appendChild(errorMessage);*/ 
+                    console.error("Please enter a valid contact number, with the area code.");
                 }
             });
 
@@ -150,41 +145,21 @@
             let email = document.getElementById("email")
             email.addEventListener("blur", (event) =>
             {
-                if(email.value.match(/^([^\.-_])([\w\.-]+)@([a-zA-Z0-9-]+).([a-z]){2,4}(\.[a-z]{2,4})?$/))
-                {
-                    
-                }
-                else
+                if(!email.value.match(/^([^\.-_])([\w\.-]+)@([a-zA-Z0-9-]+).([a-z]){2,4}(\.[a-z]{2,4})$/)) //RegEx to check if the input has the format of an email
                 {
                     email.focus();
-                    /* errorMessage.hidden = false;
-                    errorMessage.textContent = "Please insert a valid first name"
-                    panelHead.appendChild(errorMessage); */
+                    console.error("Please enter a valid email.");
                 }
             }); 
 
-            //Message input
-            let yourMessage = document.getElementById("yourMessage")
-
-            //Send button
-            let sendButton = document.getElementById("sendButton");
-            sendButton.addEventListener("click", (event) =>
-            {
-                event.preventDefault();
-                console.log(`First name is: ${firstName.value}`);
-                console.log(`Last name is: ${lastName.value}`);
-                console.log(`Contact number is: ${contactNumber.value}`);
-                console.log(`Email is: ${email.value}`);
-                console.log(`The message is: ${yourMessage.value}`);
-                
-            });
+            return true;
         }
     }
 
 
     function Start()
     {
-        console.log('%cApp Started...', "color:purple; font-size: 24px;");
+        console.log('%cApp Started...', "color: #9932CC; -webkit-text-stroke: 1.5px #4B0082; font-size: 30px; font-weight:bold");
 
         let paragraph = addParagraphs();
         if(paragraph) 
@@ -201,6 +176,18 @@
         {
             console.warn("Form not validated - does not exist");
         }
+
+        let sendButton = document.getElementById("sendButton");
+        sendButton.addEventListener("click", (event) =>
+        {
+            event.preventDefault();
+            console.log(`%cFirst name is: ${firstName.value}`, "color: LIGHTSTEELBLUE; font-size: 16px;");
+            console.log(`%cLast name is: ${lastName.value}`, "color: LIGHTSTEELBLUE; font-size: 16px;");
+            console.log(`%cContact number is: ${contactNumber.value}`, "color: LIGHTSTEELBLUE; font-size: 16px;");
+            console.log(`%cEmail is: ${email.value}`, "color: LIGHTSTEELBLUE; font-size: 16px;");
+            console.log(`%cThe message is: ${yourMessage.value}`, "color: STEELBLUE; font-size: 16px;");
+            
+        });
     }
 
     window.addEventListener("load", Start);

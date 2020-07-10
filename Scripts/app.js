@@ -152,42 +152,144 @@
                 }
             }); 
 
+            //Send button exibits form inputs
+            let sendButton = document.getElementById("sendButton");
+            sendButton.addEventListener("click", (event) =>
+            {
+                event.preventDefault();
+                console.log(`%cFirst name is: ${firstName.value}`, "color: LIGHTSTEELBLUE; font-size: 16px;");
+                console.log(`%cLast name is: ${lastName.value}`, "color: LIGHTSTEELBLUE; font-size: 16px;");
+                console.log(`%cContact number is: ${contactNumber.value}`, "color: LIGHTSTEELBLUE; font-size: 16px;");
+                console.log(`%cEmail is: ${email.value}`, "color: LIGHTSTEELBLUE; font-size: 16px;");
+                console.log(`%cThe message is: ${yourMessage.value}`, "color: STEELBLUE; font-size: 16px;");
+                
+            });
+
             return true;
         }
     }
 
+    //Add carousel at the top of the page
+    function addCarousel()
+    {
+        let siteTop = document.getElementById("9Islands");
+        if(siteTop)
+        {
+            let carousel = document.createElement("div")
+            carousel.innerHTML = `
+                <hr>
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="6"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="7"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="8"></li>
+                </ol>
+                <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <a href="#Folegandros"><img src="./Assets/images/folegandros.jpg" class="d-block w-100" alt="Folegandros" href="#Folegandros"></a>
+                </div>
+                <div class="carousel-item">
+                    <a href="#Alonissos"><img src="./Assets/images/alonissos.jpg" class="d-block w-100" alt="Alonissos"></a>
+                </div>
+                <div class="carousel-item">
+                    <a href="#Spetses"><img src="./Assets/images/spetses.jpg" class="d-block w-100" alt="Spetses"></a>
+                </div>
+                <div class="carousel-item">
+                    <a href="#Amorgos"><img src="./Assets/images/amorgos.jpg" class="d-block w-100" alt="Amorgos"></a>
+                </div>
+                <div class="carousel-item">
+                    <a href="#Syros"><img src="./Assets/images/syros.jpg" class="d-block w-100" alt="Syros"></a>
+                </div>
+                <div class="carousel-item">
+                    <a href="#Milos"><img src="./Assets/images/milos.jpg" class="d-block w-100" alt="Milos"></a>
+                </div>
+                <div class="carousel-item">
+                    <a href="#Hydra"><img src="./Assets/images/hydra.jpg" class="d-block w-100" alt="Hydra"></a>
+                </div>
+                <div class="carousel-item">
+                    <a href="#Ithaca"><img src="./Assets/images/ithaca.jpg" class="d-block w-100" alt="Ithaca"></a>
+                </div>
+                <div class="carousel-item">
+                    <a href="#Gavdos"><img src="./Assets/images/gavdos.jpg" class="d-block w-100" alt="Gavdos"></a>
+                </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+                </a>
+            </div>
+            `;
+            siteTop.appendChild(carousel);
+        }
+    }
 
+    /* function smoothScroll(target,duration)
+    {
+        let target = document.querySelector(target);
+        let targetPosition = target.getBoundingClientRect().top;
+        let startPosition = window.pageYOffset;
+        let distance = targetPosition - startPosition;
+        let startTime = null;
+
+        function animation(currentTime)
+        {
+            if(startTime === null)
+            {
+                startTime = currentTime;
+            }
+            let timeElapsed = currentTime - startTime;
+            let run = ease(timeElapsed, startPosition, distance, duration);
+            window.scrollTo(0,run);
+            if(timeElapsed < duration)
+            {
+                requestAnimationFrame(animation);
+            }
+        }
+
+        function ease(t, b, c, d)
+        {
+            t /= d / 2;
+            if (t < 1) return c / 2 * t * t + b;
+            t--;
+            return -c / 2 * (t * (t - 2) - 1) + b;
+        }
+
+        requestAnimationFrame(animation);
+
+    } */
+
+    /* let mainContent = document.querySelector('#mainContent');
+    mainContent.addEventListener("click", (event) =>
+    {
+        smoothScroll('#contact', 3000);
+    });
+
+    let contact = document.querySelector('#contact');
+    contact.addEventListener("click", (event) =>
+    {
+        smoothScroll('#mainContent', 3000);
+    }); */
+
+    
     function Start()
     {
         console.log('%cApp Started...', "color: #9932CC; -webkit-text-stroke: 1.5px #4B0082; font-size: 30px; font-weight:bold");
 
-        let paragraph = addParagraphs();
-        if(paragraph) 
-        {
-            console.log("Successfully added paragraphs to jumbotron");
-        }
+        addParagraphs();
+        
+        formValidation();
 
-        let validation = formValidation();
-        if(validation)
-        {
-            console.log("Successfully validated form");
-        }
-        else
-        {
-            console.warn("Form not validated - does not exist");
-        }
-
-        let sendButton = document.getElementById("sendButton");
-        sendButton.addEventListener("click", (event) =>
-        {
-            event.preventDefault();
-            console.log(`%cFirst name is: ${firstName.value}`, "color: LIGHTSTEELBLUE; font-size: 16px;");
-            console.log(`%cLast name is: ${lastName.value}`, "color: LIGHTSTEELBLUE; font-size: 16px;");
-            console.log(`%cContact number is: ${contactNumber.value}`, "color: LIGHTSTEELBLUE; font-size: 16px;");
-            console.log(`%cEmail is: ${email.value}`, "color: LIGHTSTEELBLUE; font-size: 16px;");
-            console.log(`%cThe message is: ${yourMessage.value}`, "color: STEELBLUE; font-size: 16px;");
-            
-        });
+        addCarousel();
     }
 
     window.addEventListener("load", Start);

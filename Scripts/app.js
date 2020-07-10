@@ -88,6 +88,97 @@
         }
     }
 
+    function formValidation()
+    {
+        let contactForm = document.getElementsByTagName("form")[0];
+
+        if(contactForm)
+        {
+            contactForm.noValidate = true;
+            //let panelHead = document.getElementsByClassName("panel-heading");
+            /* let errorMessage = document.createElement("div")
+            errorMessage.setAttribute("class", "alert alert-danger");
+            errorMessage.setAttribute("role", "alert");
+            errorMessage.setAttribute("hidden", "true"); */
+            
+            //First Name Validation
+            let firstName = document.getElementById("firstName")
+            firstName.addEventListener("blur", (event) =>
+            {
+                if(firstName.value.length < 2)
+                {
+                    firstName.focus();
+                    /* errorMessage.hidden = false;
+                    errorMessage.textContent = "Please insert a valid first name"
+                    panelHead.appendChild(errorMessage); */
+                }
+            });
+
+            //Last Name Validation
+            let lastName = document.getElementById("lastName")
+            lastName.addEventListener("blur", (event) =>
+            {
+                if(lastName.value.length < 2)
+                {
+                    lastName.focus();
+                    /* errorMessage.hidden = false;
+                    errorMessage.textContent = "Please insert a valid first name"
+                    panelHead.appendChild(errorMessage); */
+                }
+            });
+
+            //Contact Number Validation
+            let contactNumber = document.getElementById("contactNumber")
+            contactNumber.addEventListener("blur", (event) =>
+            {
+                if(contactNumber.value.match(/^\d{10}$/))
+                {
+                    
+                }
+                else
+                {
+                    contactNumber.focus();
+                    /* errorMessage.hidden = false;
+                    errorMessage.textContent = "Please insert a valid first name"
+                    panelHead.appendChild(errorMessage);*/ 
+                }
+            });
+
+            //Email Validation
+            let email = document.getElementById("email")
+            email.addEventListener("blur", (event) =>
+            {
+                if(email.value.match(/^([^\.-_])([\w\.-]+)@([a-zA-Z0-9-]+).([a-z]){2,4}(\.[a-z]{2,4})?$/))
+                {
+                    
+                }
+                else
+                {
+                    email.focus();
+                    /* errorMessage.hidden = false;
+                    errorMessage.textContent = "Please insert a valid first name"
+                    panelHead.appendChild(errorMessage); */
+                }
+            }); 
+
+            //Message input
+            let yourMessage = document.getElementById("yourMessage")
+
+            //Send button
+            let sendButton = document.getElementById("sendButton");
+            sendButton.addEventListener("click", (event) =>
+            {
+                event.preventDefault();
+                console.log(`First name is: ${firstName.value}`);
+                console.log(`Last name is: ${lastName.value}`);
+                console.log(`Contact number is: ${contactNumber.value}`);
+                console.log(`Email is: ${email.value}`);
+                console.log(`The message is: ${yourMessage.value}`);
+                
+            });
+        }
+    }
+
     function Start()
     {
         console.log('%cApp Started...', "color:purple; font-size: 24px;");
@@ -96,6 +187,16 @@
         if(paragraph) 
         {
             console.log("Successfully added paragraphs to jumbotron");
+        }
+
+        let validation = formValidation();
+        if(validation)
+        {
+            console.log("Successfully validated form");
+        }
+        else
+        {
+            console.warn("Form not validated - does not exist");
         }
     }
 

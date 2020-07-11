@@ -233,52 +233,34 @@
         }
     }
 
-    /* function smoothScroll(target,duration)
+    function smoothScroll() 
     {
-        let target = document.querySelector(target);
-        let targetPosition = target.getBoundingClientRect().top;
-        let startPosition = window.pageYOffset;
-        let distance = targetPosition - startPosition;
-        let startTime = null;
+        let navbarLinks = document.querySelectorAll(".navbar a");
+        navbarLinks.forEach(elem => elem.addEventListener("click", navbarLinkClick));
 
-        function animation(currentTime)
+        function navbarLinkClick(event)
         {
-            if(startTime === null)
-            {
-                startTime = currentTime;
-            }
-            let timeElapsed = currentTime - startTime;
-            let run = ease(timeElapsed, startPosition, distance, duration);
-            window.scrollTo(0,run);
-            if(timeElapsed < duration)
-            {
-                requestAnimationFrame(animation);
-            }
+            scrolling(event);
         }
 
-        function ease(t, b, c, d)
+        let carouselLinks = document.querySelectorAll(".carousel a");
+        carouselLinks.forEach(elem => elem.addEventListener("click", carouselLinkClick));
+
+        function carouselLinkClick(event)
         {
-            t /= d / 2;
-            if (t < 1) return c / 2 * t * t + b;
-            t--;
-            return -c / 2 * (t * (t - 2) - 1) + b;
+            scrolling(event);
         }
 
-        requestAnimationFrame(animation);
-
-    } */
-
-    /* let mainContent = document.querySelector('#mainContent');
-    mainContent.addEventListener("click", (event) =>
-    {
-        smoothScroll('#contact', 3000);
-    });
-
-    let contact = document.querySelector('#contact');
-    contact.addEventListener("click", (event) =>
-    {
-        smoothScroll('#mainContent', 3000);
-    }); */
+        function scrolling(event)
+        {
+            event.preventDefault();
+            let targetId = event.currentTarget.getAttribute("href");
+            window.scrollTo({
+                top: targetId === "#" ? 0 : document.querySelector(targetId).offsetTop,
+                behavior: "smooth"
+            });
+        }
+    }
 
     
     function Start()
@@ -290,6 +272,8 @@
         formValidation();
 
         addCarousel();
+
+        smoothScroll();
     }
 
     window.addEventListener("load", Start);

@@ -102,12 +102,7 @@
         if(contactForm)
         {
             contactForm.noValidate = true;
-            //let panelHead = document.getElementsByClassName("panel-heading");
-            /* let errorMessage = document.createElement("div")
-            errorMessage.setAttribute("class", "alert alert-danger");
-            errorMessage.setAttribute("role", "alert");
-            errorMessage.setAttribute("hidden", "true"); */
-            
+    
             //First Name Validation
             let firstName = document.getElementById("firstName")
             firstName.addEventListener("blur", (event) =>
